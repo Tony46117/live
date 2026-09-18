@@ -226,107 +226,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 // ===== Live Satellite Location Map (Kibois, Nakuru, Kenya) =====
-const FARM_LOCATION = { lat: -0.2462, lng: 36.2435 }; // Kibois, Nakuru, Kenya
+(function () {
+  "use strict";
 
-function initSatelliteMap() {
-    const mapEl = document.getElementById('satelliteMap');
-    if (!mapEl || typeof L === 'undefined') return;
+  var farmCoords = [-0.2462, 36.2435]; // Kibois, Nakuru, Kenya
+  var mapEl = document.getElementById("nurseryMap");
+  var leafletLoaded = false;
 
-    const map = L.map('satelliteMap', { scrollWheelZoom: false }).setView([FARM_LOCATION.lat, FARM_LOCATION.lng], 15);
+  function loadLeaflet(onReady) {
+    if (typeof L !== "undefined") { onReady(); return; }
+    if (leafletLoaded) return;
+    leafletLoaded = true;
+    var js = document.createElement("script");
+    js.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    js.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+    js.crossOrigin = "";
+    js.onload = onReady;
+    document.head.appendChild(js);
+  }
 
-    // Live satellite imagery (Esri World Imagery)
-    const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  function initFarmMap() {
+    if (typeof L === "undefined" || !mapEl) return;
+    var farmMap = L.map(mapEl, {
+      center: farmCoords,
+      zoom: 14,
+      scrollWheelZoom: false,
+      attributionControl: true
+    });
+
+    L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      {
         maxZoom: 19,
-        attribution: 'Imagery &copy; Esri, Maxar, Earthstar Geographics'
+        attribution:
+          'Satellite imagery &copy; <a href="https://www.arcgis.com/">Esri</a> — Source: Esri, Maxar, Earthstar Geographics',
+      }
+    ).addTo(farmMap);
+
+    L.marker(farmCoords, {
+      icon: L.divIcon({
+        className: "nursery-pin",
+        html: '<span class="nursery-pin-dot"></span>',
+        iconSize: [32, 42],
+        iconAnchor: [16, 42],
+      }),
+    })
+      .addTo(farmMap)
+      .bindPopup(
+        '<strong>Dorper Sheep Farm</strong><br>Kibois, Nakuru, Kenya'
+      )
+      .openPopup();
+
+    mapEl.addEventListener("pointerdown", function () {
+      setTimeout(function () {
+        if (farmMap.scrollWheelZoom) farmMap.scrollWheelZoom.enable();
+      }, 200);
     });
-
-    const street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
+    mapEl.addEventListener("pointerleave", function () {
+      if (farmMap.scrollWheelZoom) farmMap.scrollWheelZoom.disable();
     });
+  }
 
-    satellite.addTo(map);
-    L.control.layers({ 'Satellite': satellite, 'Street Map': street }).addTo(map);
-
-    // Farm pin with pulse animation
-    const farmIcon = L.divIcon({
-        className: 'farm-pin',
-        html: '<div class="farm-pin-dot"></div><div class="farm-pin-pulse"></div>',
-        iconSize: [24, 24],
-        iconAnchor: [12, 12]
-    });
-    L.marker([FARM_LOCATION.lat, FARM_LOCATION.lng], { icon: farmIcon })
-        .addTo(map)
-        .bindPopup('<strong>Dorper Sheep Farm</strong><br>Kibois, Nakuru, Kenya');
-
-    // Coordinates readout
-    const coordsEl = document.getElementById('mapCoords');
-    const formatCoord = (v, pos, neg) => `${Math.abs(v).toFixed(5)}\u00b0 ${v >= 0 ? pos : neg}`;
-    const farmCoordsText = () => `\ud83d\udccd ${formatCoord(FARM_LOCATION.lat, 'N', 'S')}, ${formatCoord(FARM_LOCATION.lng, 'E', 'W')} - Kibois, Nakuru`;
-    if (coordsEl) {
-        coordsEl.textContent = farmCoordsText();
-        map.on('mousemove', (e) => {
-            coordsEl.textContent = `\ud83d\udccd ${formatCoord(e.latlng.lat, 'N', 'S')}, ${formatCoord(e.latlng.lng, 'E', 'W')}`;
+  if (mapEl) {
+    if ("IntersectionObserver" in window) {
+      var mapObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            mapObserver.disconnect();
+            loadLeaflet(initFarmMap);
+          }
         });
-        map.on('mouseout', () => { coordsEl.textContent = farmCoordsText(); });
+      }, { rootMargin: "300px" });
+      mapObserver.observe(mapEl);
+    } else {
+      loadLeaflet(initFarmMap);
     }
-
-    // Live GPS tracking of the visitor
-    const gpsBtn = document.getElementById('liveGpsBtn');
-    let gpsWatchId = null;
-    let gpsMarker = null;
-    let gpsAccuracyCircle = null;
-
-    if (gpsBtn) {
-        gpsBtn.addEventListener('click', () => {
-            // Toggle off
-            if (gpsWatchId !== null) {
-                navigator.geolocation.clearWatch(gpsWatchId);
-                gpsWatchId = null;
-                gpsBtn.textContent = '\ud83d\udce1 Live GPS: Off';
-                gpsBtn.classList.remove('gps-on');
-                if (gpsMarker) { map.removeLayer(gpsMarker); gpsMarker = null; }
-                if (gpsAccuracyCircle) { map.removeLayer(gpsAccuracyCircle); gpsAccuracyCircle = null; }
-                return;
-            }
-
-            if (!('geolocation' in navigator)) {
-                gpsBtn.textContent = '\ud83d\udce1 GPS not supported';
-                return;
-            }
-
-            gpsBtn.textContent = '\ud83d\udce1 Live GPS: On';
-            gpsBtn.classList.add('gps-on');
-
-            const gpsIcon = L.divIcon({
-                className: 'gps-pin',
-                html: '<div class="gps-pin-dot"></div>',
-                iconSize: [18, 18],
-                iconAnchor: [9, 9]
-            });
-
-            gpsWatchId = navigator.geolocation.watchPosition((pos) => {
-                const { latitude, longitude, accuracy } = pos.coords;
-                if (!gpsMarker) {
-                    gpsMarker = L.marker([latitude, longitude], { icon: gpsIcon }).addTo(map).bindPopup('You are here');
-                    gpsAccuracyCircle = L.circle([latitude, longitude], {
-                        radius: accuracy || 20,
-                        color: '#007bff', weight: 1,
-                        fillColor: '#007bff', fillOpacity: 0.15
-                    }).addTo(map);
-                    map.setView([latitude, longitude], Math.max(map.getZoom(), 16));
-                } else {
-                    gpsMarker.setLatLng([latitude, longitude]);
-                    gpsAccuracyCircle.setLatLng([latitude, longitude]).setRadius(accuracy || 20);
-                }
-            }, () => {
-                gpsBtn.textContent = '\ud83d\udce1 GPS permission denied';
-                gpsWatchId = null;
-                gpsBtn.classList.remove('gps-on');
-            }, { enableHighAccuracy: true, maximumAge: 1000, timeout: 15000 });
-        });
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initSatelliteMap);
+  }
+})();
