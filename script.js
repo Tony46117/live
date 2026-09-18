@@ -3,7 +3,7 @@ const livestock = [
         id: 1,
         name: "4 Months Old Dorper",
         price: 3500,
-        image: "images/4-months-dorper.jpg",
+        image: "images/4-months-dorper.webp",
         specs: ["4 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Ready for Fattening", "Good Genetics", "Dewormed"]
     },
@@ -11,7 +11,7 @@ const livestock = [
         id: 2,
         name: "5 Months Old Dorper",
         price: 5500,
-        image: "images/5-months-dorper-1.jpg",
+        image: "images/5-months-dorper-1.webp",
         specs: ["5 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Growing Well", "Strong Build", "Dewormed"]
     },
@@ -19,7 +19,7 @@ const livestock = [
         id: 3,
         name: "5 Months Old Dorper",
         price: 5500,
-        image: "images/5-months-dorper-2.jpg",
+        image: "images/5-months-dorper-2.webp",
         specs: ["5 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Growing Well", "Strong Build", "Dewormed"]
     },
@@ -27,7 +27,7 @@ const livestock = [
         id: 4,
         name: "6 Months Old Dorper",
         price: 6500,
-        image: "images/6-months-dorper-1.jpg",
+        image: "images/6-months-dorper-1.webp",
         specs: ["6 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Near Market Weight", "Excellent Condition", "Dewormed"]
     },
@@ -35,7 +35,7 @@ const livestock = [
         id: 5,
         name: "6 Months Old Dorper",
         price: 6500,
-        image: "images/6-months-dorper-2.jpg",
+        image: "images/6-months-dorper-2.webp",
         specs: ["6 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Near Market Weight", "Excellent Condition", "Dewormed"]
     },
@@ -43,7 +43,7 @@ const livestock = [
         id: 6,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7-months-dorper-1.jpg",
+        image: "images/7-months-dorper-1.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -51,7 +51,7 @@ const livestock = [
         id: 7,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7-months-dorper-2.jpg",
+        image: "images/7-months-dorper-2.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -59,7 +59,7 @@ const livestock = [
         id: 8,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7-months-dorper-3.jpg",
+        image: "images/7-months-dorper-3.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -67,7 +67,7 @@ const livestock = [
         id: 9,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7-months-dorper-4.jpg",
+        image: "images/7-months-dorper-4.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -75,7 +75,7 @@ const livestock = [
         id: 10,
         name: "10 Months Old Dorper",
         price: 9500,
-        image: "images/10-months-dorper.jpg",
+        image: "images/10-months-dorper.webp",
         specs: ["10 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Breeding Stock", "Mature Weight", "Dewormed"]
     },
@@ -83,7 +83,7 @@ const livestock = [
         id: 11,
         name: "Pregnant Female Dorper",
         price: 13500,
-        image: "images/pregnant-dorper.jpg",
+        image: "images/pregnant-dorper.webp",
         specs: ["Pregnant", "Female", "Vaccinated", "Healthy"],
         features: ["Ready to Lamb", "Proven Breeder", "Dewormed"]
     }
