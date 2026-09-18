@@ -729,3 +729,129 @@ input, select, textarea {
         padding: 20px;
     }
 }
+/* ===== Live Satellite Location Section ===== */
+.satellite-section {
+    padding: 100px 0;
+    background: var(--white-soft);
+}
+
+.map-wrapper {
+    position: relative;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.satellite-map {
+    height: 480px;
+    width: 100%;
+    background: var(--light-green);
+    z-index: 1;
+}
+
+.map-gps-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    background: var(--white);
+    color: var(--dark);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition);
+}
+
+.map-gps-btn:hover {
+    border-color: var(--green);
+    color: var(--green-dark);
+}
+
+.map-gps-btn.gps-on {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+}
+
+.map-coords {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--dark);
+    box-shadow: var(--shadow-sm);
+}
+
+.map-note {
+    margin-top: 16px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Farm pin with pulsing ring */
+.farm-pin-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+    background: var(--green);
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.farm-pin-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+    background: rgba(46, 125, 50, 0.5);
+    border-radius: 50%;
+    animation: pinPulse 2s ease-out infinite;
+    z-index: 1;
+}
+
+@keyframes pinPulse {
+    0% { width: 14px; height: 14px; opacity: 0.8; }
+    100% { width: 64px; height: 64px; opacity: 0; }
+}
+
+/* Live GPS visitor pin */
+.gps-pin-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+    background: var(--call);
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.leaflet-control-attribution {
+    font-size: 10px;
+}
+
+@media (max-width: 768px) {
+    .satellite-section {
+        padding: 72px 0;
+    }
+    .satellite-map {
+        height: 360px;
+    }
+}
