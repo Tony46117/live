@@ -35,7 +35,7 @@ const livestock = [
         id: 5,
         name: "6 Months Old Dorper",
         price: 6500,
-        image: "images/ 6 months sheep.jpeg",
+        image: "images/6 months sheep.jpeg",
         specs: ["6 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Near Market Weight", "Excellent Condition", "Dewormed"]
     },
