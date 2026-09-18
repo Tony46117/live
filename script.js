@@ -3,7 +3,7 @@ const livestock = [
         id: 1,
         name: "4 Months Old Dorper",
         price: 3500,
-        image: "images/5 months.jpeg",
+        image: "images/4-months-dorper.jpg",
         specs: ["4 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Ready for Fattening", "Good Genetics", "Dewormed"]
     },
@@ -11,7 +11,7 @@ const livestock = [
         id: 2,
         name: "5 Months Old Dorper",
         price: 5500,
-        image: "images/5 months sheeep.jpeg",
+        image: "images/5-months-dorper-1.jpg",
         specs: ["5 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Growing Well", "Strong Build", "Dewormed"]
     },
@@ -19,7 +19,7 @@ const livestock = [
         id: 3,
         name: "5 Months Old Dorper",
         price: 5500,
-        image: "images/5 monthss sheep.jpeg",
+        image: "images/5-months-dorper-2.jpg",
         specs: ["5 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Growing Well", "Strong Build", "Dewormed"]
     },
@@ -27,7 +27,7 @@ const livestock = [
         id: 4,
         name: "6 Months Old Dorper",
         price: 6500,
-        image: "images/6 months.jpeg",
+        image: "images/6-months-dorper-1.jpg",
         specs: ["6 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Near Market Weight", "Excellent Condition", "Dewormed"]
     },
@@ -35,7 +35,7 @@ const livestock = [
         id: 5,
         name: "6 Months Old Dorper",
         price: 6500,
-        image: "images/6 months sheep.jpeg",
+        image: "images/6-months-dorper-2.jpg",
         specs: ["6 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Near Market Weight", "Excellent Condition", "Dewormed"]
     },
@@ -43,7 +43,7 @@ const livestock = [
         id: 6,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7 months.jpeg",
+        image: "images/7-months-dorper-1.jpg",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -51,7 +51,7 @@ const livestock = [
         id: 7,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7 months sheep.jpeg",
+        image: "images/7-months-dorper-2.jpg",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -59,7 +59,7 @@ const livestock = [
         id: 8,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7 months sheEp.jpeg",
+        image: "images/7-months-dorper-3.jpg",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -67,7 +67,7 @@ const livestock = [
         id: 9,
         name: "7 Months Old Dorper",
         price: 6500,
-        image: "images/7 mthS .jpeg",
+        image: "images/7-months-dorper-4.jpg",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
     },
@@ -75,7 +75,7 @@ const livestock = [
         id: 10,
         name: "10 Months Old Dorper",
         price: 9500,
-        image: "images/1 year sheep.jpeg",
+        image: "images/10-months-dorper.jpg",
         specs: ["10 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Breeding Stock", "Mature Weight", "Dewormed"]
     },
@@ -83,7 +83,7 @@ const livestock = [
         id: 11,
         name: "Pregnant Female Dorper",
         price: 13500,
-        image: "images/sheep 5 months.jpeg",
+        image: "images/pregnant-dorper.jpg",
         specs: ["Pregnant", "Female", "Vaccinated", "Healthy"],
         features: ["Ready to Lamb", "Proven Breeder", "Dewormed"]
     }
@@ -102,6 +102,19 @@ const specIcons = {
     "Healthy": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
     "Dewormed": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`
 };
+
+// Neutral placeholder shown if any image ever fails to load (no broken-image icons)
+const IMAGE_PLACEHOLDER = "data:image/svg+xml;utf8," + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420"><rect width="600" height="420" fill="#f3f4f6"/><g fill="none" stroke="#9ca3af" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="300" cy="250" rx="130" ry="85"/><circle cx="215" cy="190" r="42"/><path d="M195 165l-18-14M195 165l-18 14M235 165l18-14M235 165l18 14"/></g><text x="300" y="385" text-anchor="middle" font-family="Arial" font-size="22" fill="#6b7280">Dorper Sheep Farm</text></svg>`
+);
+
+document.addEventListener("error", (e) => {
+    const t = e.target;
+    if (t && t.tagName === "IMG" && !t.dataset.fallback) {
+        t.dataset.fallback = "1";
+        t.src = IMAGE_PLACEHOLDER;
+    }
+}, true);
 
 function getSpecIcon(spec) {
     return specIcons[spec] || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>`;
