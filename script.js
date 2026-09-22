@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
 (function () {
   "use strict";
 
-  var farmCoords = [0.4112, 35.0223]; // Kibois (Kaiboi), Nandi, Kenya
+  var farmCoords = [0.5365397, 35.0143033]; // Kibois Farm, Kipkaren Salient, Nandi, Kenya
   var mapEl = document.getElementById("nurseryMap");
   var leafletLoaded = false;
 
