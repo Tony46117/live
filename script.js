@@ -354,11 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ===== Live Satellite Location Map (Kibois, Nakuru, Kenya) =====
+// ===== Live Satellite Location Map (Kibois, Nandi, Kenya) =====
 (function () {
   "use strict";
 
-  var farmCoords = [-0.2462, 36.2435]; // Kibois, Nakuru, Kenya
+  var farmCoords = [0.4112, 35.0223]; // Kibois (Kaiboi), Nandi, Kenya
   var mapEl = document.getElementById("nurseryMap");
   var leafletLoaded = false;
 
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .addTo(farmMap)
       .bindPopup(
-        '<strong>Dorper Sheep Farm</strong><br>Kibois, Nakuru, Kenya'
+        '<strong>Dorper Sheep Farm</strong><br>Kibois, Nandi, Kenya'
       )
       .openPopup();
 
