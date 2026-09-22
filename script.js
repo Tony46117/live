@@ -42,7 +42,7 @@ const livestock = [
     {
         id: 6,
         name: "7 Months Old Dorper",
-        price: 6500,
+        price: 7500,
         image: "images/7-months-dorper-1.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
@@ -50,7 +50,7 @@ const livestock = [
     {
         id: 7,
         name: "7 Months Old Dorper",
-        price: 6500,
+        price: 7500,
         image: "images/7-months-dorper-2.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
@@ -58,7 +58,7 @@ const livestock = [
     {
         id: 8,
         name: "7 Months Old Dorper",
-        price: 6500,
+        price: 7500,
         image: "images/7-months-dorper-3.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
@@ -66,7 +66,7 @@ const livestock = [
     {
         id: 9,
         name: "7 Months Old Dorper",
-        price: 6500,
+        price: 7500,
         image: "images/7-months-dorper-4.webp",
         specs: ["7 Months", "Male/Female", "Vaccinated", "Healthy"],
         features: ["Market Ready", "Prime Condition", "Dewormed"]
@@ -89,27 +89,27 @@ const livestock = [
     },
     {
         id: 12,
-        name: "Dorper Sheep — New Arrival",
-        price: null,
+        name: "8 Months Old Dorper",
+        price: 8500,
         image: "images/dorper-new-1.webp",
-        specs: ["New Stock", "Vaccinated", "Healthy"],
-        features: ["Excellent Condition", "Good Genetics", "Dewormed"]
+        specs: ["8 Months", "Male/Female", "Vaccinated", "Healthy"],
+        features: ["Market Ready", "Excellent Condition", "Dewormed"]
     },
     {
         id: 13,
-        name: "Dorper Lambs — New Arrival",
-        price: null,
+        name: "9 Months Old Dorper",
+        price: 9500,
         image: "images/dorper-new-2.webp",
-        specs: ["New Stock", "Vaccinated", "Healthy"],
-        features: ["Growing Well", "Strong Build", "Dewormed"]
+        specs: ["9 Months", "Male/Female", "Vaccinated", "Healthy"],
+        features: ["Breeding Stock", "Strong Build", "Dewormed"]
     },
     {
         id: 14,
-        name: "Dorper Lambs — New Arrival",
-        price: null,
-        image: "images/dorper-new-3.webp",
-        specs: ["New Stock", "Vaccinated", "Healthy"],
-        features: ["Growing Well", "Strong Build", "Dewormed"]
+        name: "Pregnant Dorper with Triplets",
+        price: 16500,
+        image: "images/pregnant-dorper.webp",
+        specs: ["Pregnant", "Triplets", "Female", "Vaccinated", "Healthy"],
+        features: ["Carrying Triplets", "Ready to Lamb", "Proven Breeder", "Dewormed"]
     }
 ];
 
@@ -199,6 +199,9 @@ const specIcons = {
     "6 Months": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
     "7 Months": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
     "10 Months": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    "8 Months": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    "9 Months": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
+    "Triplets": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="16" r="3"/></svg>`,
     "Pregnant": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4a8 8 0 0 1 8 8H4a8 8 0 0 1 8-8z"/><path d="M12 12v4"/><path d="M10 16h4"/></svg>`,
     "Female": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M12 13v8"/><path d="M9 16h6"/></svg>`,
     "Lactating": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v10"/><path d="M8 7c0 3 1.5 5 4 5s4-2 4-5"/><path d="M5 13a7 7 0 0 0 14 0"/></svg>`,
